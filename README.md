@@ -1,0 +1,1 @@
+This is a frontend client for the myFlix database app. It uses Node.js, JSX, SCSS, with Parcel handling build operations.
