@@ -1,4 +1,12 @@
 .my-flix {
   color: #4682b4;
 }
+
+img {
+  max-height: 500px;
+}
+
+.caps {
+  text-transform: capitalize;
+}
 /*# sourceMappingURL=index.c35a7de5.css.map */
