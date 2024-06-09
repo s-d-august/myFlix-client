@@ -9,7 +9,7 @@ export const MainView = () => {
     { "_id": { "$oid": "6648f21ef50042a06dcdcdf9" }, "Title": "Spirited Away", "Description": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches and spirits, and where humans are changed into beasts.", "Director": { "Name": "Hayao Miyazaki", "Bio": "Hayao Miyazaki is a Japanese animator, filmmaker, and manga artist.", "Birth": "1941", "Death": null }, "Genre": { "Name": "Animation", "Description": "Animation is a method in which pictures are manipulated to appear as moving images." }, "ImagePath": "https://i.etsystatic.com/26442830/r/il/ecd133/3035509656/il_fullxfull.3035509656_n6mh.jpg", "Featured": false },
     { "_id": { "$oid": "6648f349f50042a06dcdcdfa" }, "Title": "The Thing", "Description": "A research team in Antarctica is hunted by a shape-shifting alien that assumes the appearance of its victims.", "Director": { "Name": "John Carpenter", "Bio": "John Howard Carpenter is an American filmmaker, composer, and actor.", "Birth": "1948", "Death": null }, "Genre": { "Name": "Horror", "Description": "Horror is a film genre that seeks to elicit fear or disgust in its audience for entertainment purposes." }, "ImagePath": "https://i.etsystatic.com/26442830/r/il/ecd133/3035509656/il_fullxfull.3035509656_n6mh.jpg", "Featured": true }
   ])
-}
+
 
 const [selectedMovie, setSelectedMovie] = useState(null);
 
@@ -35,4 +35,4 @@ return (
       />
     ))}
   </div>
-)
+)}
