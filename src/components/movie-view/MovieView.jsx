@@ -22,7 +22,7 @@ export const MovieView = ({movie, onBackClick}) => {
       </div>
       <div>
         <span>Featured: </span>
-        <span>{movie.Featured}</span>
+        <span className="caps">{movie.Featured.toString()}</span>
       </div>
       <button onClick={onBackClick}>Back</button>
     </div>
