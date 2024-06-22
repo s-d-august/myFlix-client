@@ -14,7 +14,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
 
 
-    fetch("YOUR_API_URL/login", {
+    fetch("https://myflix-api-3of3.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
