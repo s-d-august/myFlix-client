@@ -31,7 +31,6 @@ useEffect(() => {
         Image: doc.ImagePath
       }
     })
-    console.log(moviesFromApi)
     setMovies(moviesFromApi)
   })
 }, [token]);
