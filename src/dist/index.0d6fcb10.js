@@ -27518,7 +27518,7 @@ const MovieCard = ({ movie, onMovieClick })=>{
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                 variant: "top",
-                src: movie.ImagePath
+                src: movie.Image
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
                 lineNumber: 7,
@@ -27534,7 +27534,7 @@ const MovieCard = ({ movie, onMovieClick })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
-                        children: movie.Director.Name
+                        children: movie.Director
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
                         lineNumber: 10,
