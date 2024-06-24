@@ -43,17 +43,16 @@ export const MainView = () => {
 
   return (
     <Container>
-          <Navbar fixed="top" className="bg-body-tertiary">
+          <Navbar fixed="top" bg="dark">
       <Container>
         <Navbar.Brand href="#">
-          <h2>myFlix</h2>
+          <h2 className="text-light">myFlix</h2>
         </Navbar.Brand>
         <Navbar.Collapse className="justify-content-end">
           
             {user ? (
               <>
-              <Navbar.Text><span>Signed in as: {user.Username}</span></Navbar.Text>
-              <Navbar.Text></Navbar.Text>
+              <Navbar.Text className="text-light">Signed in as: <span className="bold">{user.Username}</span></Navbar.Text>
               <Button style={{ marginLeft: '10px' }}
               onClick={() => {
                 setUser(null);
