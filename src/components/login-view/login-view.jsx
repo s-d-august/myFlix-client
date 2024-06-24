@@ -40,7 +40,7 @@ export const LoginView = ({ onLoggedIn }) => {
   };
   return (
     <>
-    <h4>Log In</h4>
+    <h4 className="margin-top">Log In</h4>
 
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formUsername">

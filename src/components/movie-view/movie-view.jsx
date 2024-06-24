@@ -7,7 +7,7 @@ export const MovieView = ({movie, onBackClick}) => {
       <div>
         <img src={movie.Image}/>
       </div>
-      <div>
+      <div className="margin-top">
         <span className="bold">Title: </span>
         <span>{movie.Title}</span>
       </div>
@@ -27,7 +27,7 @@ export const MovieView = ({movie, onBackClick}) => {
         <span className="bold">Featured: </span>
         <span className="caps">{movie.Featured.toString()}</span>
       </div>
-      <Button style={{margin: '10px 0px'}} onClick={onBackClick}>Back</Button>
+      <Button className="margin-top" onClick={onBackClick}>Back</Button>
       
     </div>
   )

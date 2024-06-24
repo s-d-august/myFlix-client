@@ -70,7 +70,7 @@ export const MainView = () => {
       </Container>
     </Navbar>
 
-    <Row>
+    <Row  className="justify-content-md-center">
       {!user ? (
         <>
         <Col md={6}>

@@ -27508,6 +27508,7 @@ const MainView = ()=>{
                 columnNumber: 11
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+                className: "justify-content-md-center",
                 children: [
                     !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                         children: [
@@ -34066,6 +34067,7 @@ const MovieView = ({ movie, onBackClick })=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "margin-top",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         className: "bold",
@@ -34182,9 +34184,7 @@ const MovieView = ({ movie, onBackClick })=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                style: {
-                    margin: "10px 0px"
-                },
+                className: "margin-top",
                 onClick: onBackClick,
                 children: "Back"
             }, void 0, false, {
@@ -34266,6 +34266,7 @@ const LoginView = ({ onLoggedIn })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
+                className: "margin-top",
                 children: "Log In"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
@@ -34409,6 +34410,7 @@ const SignupView = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
+                className: "margin-top",
                 children: "Sign Up"
             }, void 0, false, {
                 fileName: "src/components/signup-view/signup-view.jsx",
