@@ -7,6 +7,8 @@ import Row from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
+import Button from 'react-bootstrap/Button'
+
 
 export const MainView = () => {
 
@@ -41,26 +43,48 @@ export const MainView = () => {
 
   return (
     <Container>
-          <Navbar fixed="top" expand="lg" className="bg-body-tertiary">
+          <Navbar fixed="top" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#">myFlix</Navbar.Brand>
+        <Navbar.Brand href="#">
+          <h2>myFlix</h2>
+        </Navbar.Brand>
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            Signed in as: <a href="#login">Mark Otto</a>
-          </Navbar.Text>
+          
+            {user ? (
+              <>
+              <Navbar.Text><span>Signed in as: {user.Username}</span></Navbar.Text>
+              <Navbar.Text></Navbar.Text>
+              <Button style={{ marginLeft: '10px' }}
+              onClick={() => {
+                setUser(null);
+                setToken(null);
+                localStorage.clear();
+              }}
+            >
+              Logout
+            </Button></>
+            ) : (<></>)}
+            
+          
+
         </Navbar.Collapse>
       </Container>
     </Navbar>
+
     <Row>
       {!user ? (
+        <>
         <Col md={6}>
           <LoginView onLoggedIn={(user, token) => {
             setUser(user);
             setToken(token)
           }} />
-          or
+          </Col>
+          
+        <Col>
           <SignupView />
         </Col>
+        </>
       ) : selectedMovie ? (
         <Col md={8}>
           <MovieView movie={selectedMovie}
@@ -72,7 +96,7 @@ export const MainView = () => {
       ) : (
         <>
           {movies.map((movie) => (
-            <Col className="mb-4" key={movie.key} md={3}>
+            <Col className="mb-4" key={movie.key} md={3} sm={4}>
               <MovieCard
                 movie={movie}
                 onMovieClick={(newSelectedMovie) => {
@@ -81,15 +105,7 @@ export const MainView = () => {
               />
             </Col>))}
 
-          <button
-            onClick={() => {
-              setUser(null);
-              setToken(null);
-              localStorage.clear();
-            }}
-          >
-            Logout
-          </button></>)
+          </>)
       } </Row>
       </Container>
     )

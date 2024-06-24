@@ -1,4 +1,6 @@
 import PropTypes from "prop-types"
+import Button from 'react-bootstrap/Button'
+import "./movie-view.scss"
 
 export const MovieView = ({movie, onBackClick}) => {
   return (
@@ -7,26 +9,27 @@ export const MovieView = ({movie, onBackClick}) => {
         <img src={movie.Image}/>
       </div>
       <div>
-        <span>Title: </span>
+        <span className="bold">Title: </span>
         <span>{movie.Title}</span>
       </div>
       <div>
-        <span>Description: </span>
+        <span className="bold">Description: </span>
         <span>{movie.Description}</span>
       </div>
       <div>
-        <span>Director: </span>
+        <span className="bold">Director: </span>
         <span>{movie.Director}</span>
       </div>
       <div>
-        <span>Genre: </span>
+        <span className="bold">Genre: </span>
         <span>{movie.Genre}</span>
       </div>
       <div>
-        <span>Featured: </span>
+        <span className="bold">Featured: </span>
         <span className="caps">{movie.Featured.toString()}</span>
       </div>
-      <button onClick={onBackClick}>Back</button>
+      <Button style={{margin: '10px 0px'}} onClick={onBackClick}>Back</Button>
+      
     </div>
   )
 }

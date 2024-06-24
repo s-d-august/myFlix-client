@@ -1,13 +1,27 @@
 body {
-  padding-top: 61px;
+  padding-top: 75px;
 }
 
 img {
+  max-width: 100%;
   max-height: 500px;
 }
 
 .caps {
   text-transform: capitalize;
+}
+
+button {
+  margin: 10px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+body {
+  background-color: red;
+  margin-bottom: 20px;
 }
 
 :root, [data-bs-theme="light"] {

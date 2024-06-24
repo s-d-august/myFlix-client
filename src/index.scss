@@ -1,11 +1,17 @@
 body {
-  padding-top: 61px;
+  padding-top: 75px;
 }
 
 img {
   max-height: 500px;
+  max-width: 100%;
+
 }
 
 .caps {
   text-transform: capitalize;
+}
+
+button {
+  margin: 10px 10px;
 }
