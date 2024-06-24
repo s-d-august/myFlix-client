@@ -5,6 +5,8 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import Row from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container'
+import Navbar from 'react-bootstrap/Navbar'
 
 export const MainView = () => {
 
@@ -38,6 +40,17 @@ export const MainView = () => {
   }, [token]);
 
   return (
+    <Container>
+          <Navbar fixed="top" expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand href="#">myFlix</Navbar.Brand>
+        <Navbar.Collapse className="justify-content-end">
+          <Navbar.Text>
+            Signed in as: <a href="#login">Mark Otto</a>
+          </Navbar.Text>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
     <Row>
       {!user ? (
         <Col md={6}>
@@ -77,7 +90,9 @@ export const MainView = () => {
           >
             Logout
           </button></>)
-      } </Row>)
+      } </Row>
+      </Container>
+    )
 }
 
 
