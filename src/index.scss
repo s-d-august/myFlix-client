@@ -1,13 +1,33 @@
-$color: steelblue;
-
-.my-flix {
-  color: $color;
+body {
+  padding-top: 75px;
 }
 
 img {
-  max-height: 500px;
+  width: 100%;
+}
+
+.movie-view {
+  background-color: white;
+  padding: 20px;
 }
 
 .caps {
   text-transform: capitalize;
 }
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.text-light {
+  color: aliceblue;
+}
+
+$primary: #a19aff;
+$body-bg: #f0efff;
+
+@import '~bootstrap/scss/bootstrap.scss';
