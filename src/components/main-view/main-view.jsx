@@ -6,8 +6,8 @@ import { SignupView } from "../signup-view/signup-view";
 import Row from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container'
-import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 
 export const MainView = () => {
@@ -42,72 +42,79 @@ export const MainView = () => {
   }, [token]);
 
   return (
-    <Container>
-          <Navbar fixed="top" bg="dark">
-      <Container>
-        <Navbar.Brand href="#">
-          <h2 className="text-light">myFlix</h2>
-        </Navbar.Brand>
-        <Navbar.Collapse className="justify-content-end">
-          
-            {user ? (
+    <BrowserRouter>
+      <Row className="justify-content-md-center">
+        <Routes>
+          <Route
+            path="/signup"
+            element={
               <>
-              <Navbar.Text className="text-light">Signed in as: <span className="bold">{user.Username}</span></Navbar.Text>
-              <Button style={{ marginLeft: '10px' }}
-              onClick={() => {
-                setUser(null);
-                setToken(null);
-                localStorage.clear();
-              }}
-            >
-              Logout
-            </Button></>
-            ) : (<></>)}
-            
-          
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <SignupView />
+                  </Col>
+                )}
+              </>
 
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <LoginView onLoggedIn={(user) => setUser(user)} />
+                  </Col>
+                )}
+              </>
 
-    <Row  className="justify-content-md-center">
-      {!user ? (
-        <>
-        <Col md={6}>
-          <LoginView onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token)
-          }} />
-          </Col>
-          
-        <Col>
-          <SignupView />
-        </Col>
-        </>
-      ) : selectedMovie ? (
-        <Col md={8}>
-          <MovieView movie={selectedMovie}
-            onBackClick={() => setSelectedMovie(null)} />
-        </Col>
-
-      ) : movies.length === 0 ? (
-        <div>The list is empty!</div>
-      ) : (
-        <>
-          {movies.map((movie) => (
-            <Col className="mb-4" key={movie.key} md={3} sm={4}>
-              <MovieCard
-                movie={movie}
-                onMovieClick={(newSelectedMovie) => {
-                  setSelectedMovie(newSelectedMovie)
-                }}
-              />
-            </Col>))}
-
-          </>)
-      } </Row>
-      </Container>
-    )
+            }
+          />
+          <Route
+            path="/movies/:movieId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <Col md={8}>
+                    <MovieView movies={movies} />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <>
+                    {movies.map((movie) => (
+                      <Col className="mb-4" key={movie.id} md={3}>
+                        <MovieCard movie={movies} />
+                      </Col>
+                    ))}
+                  </>
+                )}
+              </>
+            }
+          />
+        </Routes>
+      </Row>
+    </BrowserRouter>
+  )
 }
 
 

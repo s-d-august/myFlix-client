@@ -1,7 +1,14 @@
 import PropTypes from "prop-types"
 import Button from 'react-bootstrap/Button'
+import { Link } from "react-router-dom";
 
-export const MovieView = ({movie, onBackClick}) => {
+export const MovieView = ({movies}) => {
+
+  
+  const { movieId } = useParams();
+
+  const movie = movies.find((b) => b.id === movieId);
+
   return (
     <div className="movie-view">
       <div>
@@ -27,7 +34,9 @@ export const MovieView = ({movie, onBackClick}) => {
         <span className="bold">Featured: </span>
         <span className="caps">{movie.Featured.toString()}</span>
       </div>
-      <Button className="margin-top" onClick={onBackClick}>Back</Button>
+      <Link to={`/`}>
+        <button className="back-button">Back</button>
+      </Link>
       
     </div>
   )
