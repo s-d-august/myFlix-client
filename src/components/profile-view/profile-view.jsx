@@ -73,7 +73,7 @@ export const ProfileView = ({users}) => {
         </Row>
       )}
       </div>
-      <Link to={`/`}>
+      <Link to={`/users:userid`}>
         <Button>Edit User Info</Button>
       </Link>
       <Link to={`/`}>
