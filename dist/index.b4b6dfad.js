@@ -42548,12 +42548,22 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                     columnNumber: 17
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
+                                    as: (0, _reactRouterDom.Link),
+                                    to: "/profile/:userId",
+                                    className: "text-light",
+                                    children: "Profile"
+                                }, void 0, false, {
+                                    fileName: "src/components/navbar/navbar.jsx",
+                                    lineNumber: 30,
+                                    columnNumber: 17
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
                                     onClick: onLoggedOut,
                                     className: "text-light",
                                     children: "Logout"
                                 }, void 0, false, {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 30,
+                                    lineNumber: 33,
                                     columnNumber: 17
                                 }, undefined)
                             ]
