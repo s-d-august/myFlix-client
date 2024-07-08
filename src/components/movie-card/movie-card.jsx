@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 export const MovieCard = ({ movie }) => {
   return (
     <Card>
-      <Card.Img variant="top" src={movie.image} />
+      <Card.Img className="h-100" variant="top" src={movie.Image} />
       <Card.Body>
-        <Card.Title>{movie.title}</Card.Title>
-        <Card.Text>{movie.author}</Card.Text>
-        <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+        <Card.Title>{movie.Title}</Card.Title>
+        <Card.Text>{movie.Director}</Card.Text>
+        <Link to={`/movies/${encodeURIComponent(movie.key)}`}>
           <Button variant="link">Open</Button>
         </Link>
       </Card.Body>
@@ -20,8 +20,9 @@ export const MovieCard = ({ movie }) => {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    author: PropTypes.string
+    Title: PropTypes.string.isRequired,
+    Image: PropTypes.string.isRequired,
+    Director: PropTypes.string,
+    key: PropTypes.string.isRequired
   }).isRequired
 };
