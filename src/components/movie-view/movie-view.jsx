@@ -1,12 +1,13 @@
 import PropTypes from "prop-types"
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button'
 
 export const MovieView = ({movies}) => {
   
   const { movieId } = useParams();
 
-  const movie = movies.find((m) => m.id === movieId);
+  const movie = movies.find((m) => m.key === movieId);
 
   return (
     <div className="movie-view">
@@ -34,7 +35,7 @@ export const MovieView = ({movies}) => {
         <span className="caps">{movie.Featured.toString()}</span>
       </div>
       <Link to={`/`}>
-        <button className="back-button">Back</button>
+        <Button className="back-button">Back</Button>
       </Link>
       
     </div>
