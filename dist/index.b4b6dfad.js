@@ -42549,7 +42549,7 @@ const NavigationBar = ({ user, onLoggedOut })=>{
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
                                     as: (0, _reactRouterDom.Link),
-                                    to: "/profile/:userId",
+                                    to: `/users/${encodeURIComponent(user._id)}`,
                                     className: "text-light",
                                     children: "Profile"
                                 }, void 0, false, {

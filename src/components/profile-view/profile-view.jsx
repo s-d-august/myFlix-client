@@ -1,39 +1,84 @@
 import PropTypes from "prop-types"
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button'
+import {Button, Row, Col, Modal} from 'react-bootstrap'
+import { useState } from 'react';
+import MovieCard from "../movie-card/movie-card"
 
 export const ProfileView = ({users}) => {
   
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const handleDelete = (userId) => {
+    fetch("https://myflix-api-3of3.onrender.com/users/" + userId, {method: "DELETE"})
+    .then(<Navigate to="/" />)
+  }
+
   const { userId } = useParams();
 
   const user = users.find((u) => u._id === userId);
 
+  let favoriteMovies = movies.filter(m => user.Favorites.includes(m.key))
+
   return (
     <div className="user-view">
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Are you sure you want to delete your account?</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDelete(userId)}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <div>
-        <img src={user.Image}/>
-      </div>
-      <div className="margin-top">
-        <span className="bold">Title: </span>
-        <span>{user.Title}</span>
+        <span className="bold">Username: </span>
+        <span>{user.Username}</span>
       </div>
       <div>
-        <span className="bold">Description: </span>
-        <span>{user.Description}</span>
+        <span className="bold">Name: </span>
+        <span>{user.Name}</span>
       </div>
       <div>
-        <span className="bold">Director: </span>
-        <span>{user.Director}</span>
+        <span className="bold">Email: </span>
+        <span>{user.Email}</span>
       </div>
       <div>
-        <span className="bold">Genre: </span>
-        <span>{user.Genre}</span>
+        <span className="bold">Birthday: </span>
+        <span>{user.Birthday}</span>
       </div>
       <div>
-        <span className="bold">Featured: </span>
-        <span className="caps">{user.Featured.toString()}</span>
+        <span className="bold">Password: </span>
+        <span>{user.Password}</span>
       </div>
+      <div>
+        <span className="bold">Favorites: </span>
+        {favoriteMovies.length === 0 ? (
+          <span>You have no movies favorited.</span>
+        ) : (
+        <Row>
+          {favoriteMovies.map((movie) => (
+            <Col className="mb-4" key={movie.key} md={6}>
+              <MovieCard movie={movie} />
+            </Col>
+          ))}
+        </Row>
+      )}
+      </div>
+      <Link to={`/`}>
+        <Button>Edit User Info</Button>
+      </Link>
+      <Link to={`/`}>
+        <Button variant="danger" onClick={handleShow}>Delete User</Button>
+      </Link>
       <Link to={`/`}>
         <Button className="back-button">Back</Button>
       </Link>

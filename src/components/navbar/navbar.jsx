@@ -3,6 +3,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
 import {Link} from 'react-router-dom'
+import { ProfileView } from '../profile-view/profile-view'
 
 export const NavigationBar = ({user, onLoggedOut}) => {
   return (
@@ -27,7 +28,7 @@ export const NavigationBar = ({user, onLoggedOut}) => {
                 <Nav.Link as={Link} to="/" className='text-light'>
                   Home
                 </Nav.Link>
-                <Nav.Link as={Link} to="/profile/:userId" className='text-light'>
+                <Nav.Link as={Link} to={`/users/${encodeURIComponent(user._id)}`} className='text-light'>
                   Profile
                 </Nav.Link>
                 <Nav.Link onClick={onLoggedOut} className='text-light'>
