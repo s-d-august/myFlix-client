@@ -13,22 +13,22 @@ export const NavigationBar = ({user, onLoggedOut}) => {
         </Navbar.Brand>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            {!user && (
+            {!user ? (
               <>
-                <Nav.Link as={Link} to="/login">
+                <Nav.Link as={Link} to="/login" className='text-light'>
                   Login
                 </Nav.Link>
-                <Nav.Link as={Link} to="/signup">
+                <Nav.Link as={Link} to="/signup" className='text-light'>
                   Signup
                 </Nav.Link>
               </>
-            )}
-            {user && (
+            ) : (
               <>
-                <Nav.Link as={Link} to="/">
+                <Nav.Link as={Link} to="/" className='text-light'>
                   Home
                 </Nav.Link>
-                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
+                <Nav.Link onClick={onLoggedOut} className='text-light'>Logout
+                </Nav.Link>
               </>
             )}
           </Nav>
