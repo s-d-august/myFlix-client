@@ -3,11 +3,12 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
-import {NavigationBar} from "../navbar/navbar"
+import { ProfileView } from "../profile-view/profile-view";
+import { NavigationBar } from "../navbar/navbar";
 import Row from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 
@@ -44,15 +45,15 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-    <NavigationBar user={user}
-      onLoggedOut={() =>
-      (setUser(null),
-      setToken(null),
-      localStorage.clear())
-      }
+      <NavigationBar user={user}
+        onLoggedOut={() =>
+        (setUser(null),
+          setToken(null),
+          localStorage.clear())
+        }
       >
-      
-    </NavigationBar>
+
+      </NavigationBar>
 
       <Row className="justify-content-md-center">
         <Routes>
@@ -115,7 +116,7 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    <ProfileView/>
+                    <ProfileView />
                   </Col>
                 )}
               </>
