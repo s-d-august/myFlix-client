@@ -2,10 +2,33 @@ import PropTypes from "prop-types"
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { Button, Row, Col, Modal } from 'react-bootstrap'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MovieCard } from "../movie-card/movie-card"
 
-export const ProfileView = ({ users }) => {
+export const ProfileView = () => {
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    if (!token) return;
+
+    fetch("https://myflix-api-3of3.onrender.com/users",
+      { headers: { Authorization: `Bearer ${token}` } })
+      .then((response) => response.json())
+      .then((data) => {
+        const usersFromApi = data.map((doc) => {
+          return {
+            userId: doc._id,
+            Username: doc.Username,
+            Name: doc.Name,
+            Birthday: doc.Birthday,
+            Email: doc.Email,
+            Favorites: doc.Favorites
+          }
+        })
+        setUsers(usersFromApi)
+      })
+  }, [token]);
 
   const [show, setShow] = useState(false);
 
@@ -20,7 +43,7 @@ export const ProfileView = ({ users }) => {
 
   const user = users.find((u) => u._id === userId);
 
-  let favoriteMovies = movies.filter(m => user.Favorites.includes(m.key))
+  let Favorites = movies.filter(m => user.Favorites.includes(m.key))
 
   return (
     <div className="user-view">
@@ -61,11 +84,11 @@ export const ProfileView = ({ users }) => {
       </div>
       <div>
         <span className="bold">Favorites: </span>
-        {favoriteMovies.length === 0 ? (
+        {Favorites.length === 0 ? (
           <span>You have no movies favorited.</span>
         ) : (
           <Row>
-            {favoriteMovies.map((movie) => (
+            {Favorites.map((movie) => (
               <Col className="mb-4" key={movie.key} md={6}>
                 <MovieCard movie={movie} />
               </Col>

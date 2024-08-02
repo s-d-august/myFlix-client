@@ -108,6 +108,20 @@ export const MainView = () => {
             }
           />
           <Route
+            path="/users/:userId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={8}>
+                    <ProfileView/>
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
             path="/"
             element={
               <>
