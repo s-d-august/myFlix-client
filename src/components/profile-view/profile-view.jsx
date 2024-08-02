@@ -1,19 +1,19 @@
 import PropTypes from "prop-types"
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import {Button, Row, Col, Modal} from 'react-bootstrap'
+import { Button, Row, Col, Modal } from 'react-bootstrap'
 import { useState } from 'react';
-import MovieCard from "../movie-card/movie-card"
+import { MovieCard } from "../movie-card/movie-card"
 
-export const ProfileView = ({users}) => {
-  
+export const ProfileView = ({ users }) => {
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleDelete = (userId) => {
-    fetch("https://myflix-api-3of3.onrender.com/users/" + userId, {method: "DELETE"})
-    .then(<Navigate to="/" />)
+    fetch("https://myflix-api-3of3.onrender.com/users/" + userId, { method: "DELETE" })
+      .then(<Navigate to="/" />)
   }
 
   const { userId } = useParams();
@@ -64,14 +64,14 @@ export const ProfileView = ({users}) => {
         {favoriteMovies.length === 0 ? (
           <span>You have no movies favorited.</span>
         ) : (
-        <Row>
-          {favoriteMovies.map((movie) => (
-            <Col className="mb-4" key={movie.key} md={6}>
-              <MovieCard movie={movie} />
-            </Col>
-          ))}
-        </Row>
-      )}
+          <Row>
+            {favoriteMovies.map((movie) => (
+              <Col className="mb-4" key={movie.key} md={6}>
+                <MovieCard movie={movie} />
+              </Col>
+            ))}
+          </Row>
+        )}
       </div>
       <Link to={`/users:userid`}>
         <Button>Edit User Info</Button>
@@ -82,7 +82,7 @@ export const ProfileView = ({users}) => {
       <Link to={`/`}>
         <Button className="back-button">Back</Button>
       </Link>
-      
+
     </div>
   )
 }
