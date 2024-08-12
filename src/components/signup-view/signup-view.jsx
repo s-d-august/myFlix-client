@@ -30,7 +30,7 @@ export const SignupView = () => {
     }).then((response) => {
       if (response.ok) {
         alert("Signup successful");
-        (<Navigate to="/" replace />);
+        (<Navigate to="/login" replace />);
       } else {
         alert("Signup failed");
       }

@@ -120,7 +120,8 @@ export const MainView = () => {
                     onDelete={() =>
                       (setUser(null),
                         setToken(null),
-                        localStorage.clear())
+                        localStorage.clear(),
+                        alert("User successfully deleted!"))
                       }/>
                   </Col>
                 )}

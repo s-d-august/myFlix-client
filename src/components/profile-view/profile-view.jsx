@@ -5,7 +5,7 @@ import { Button, Row, Col, Modal } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import { MovieCard } from "../movie-card/movie-card"
 
-export const ProfileView = ( {token, movies, user, onDelete} ) => {
+export const ProfileView = ( {token, movies, user} ) => {
 
   const [users, setUsers] = useState([]);
 
@@ -35,11 +35,10 @@ export const ProfileView = ( {token, movies, user, onDelete} ) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  function handleDelete(userId) {
-    fetch("https://myflix-api-3of3.onrender.com/users/" + userId, { headers: { Authorization: `Bearer ${token}` }, method: "DELETE" })
-    .then(onDelete())
+  function handleDelete(user) {
+    fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}`, { headers: { Authorization: `Bearer ${token}` }, method: "DELETE" })
+//    .then(onDelete())
       .then(<Navigate to="/" replace/>);
-      alert("User successfully deleted!")
   }
 
   const { userId } = useParams();
@@ -59,7 +58,7 @@ export const ProfileView = ( {token, movies, user, onDelete} ) => {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleDelete(userId)}>
+          <Button variant="danger" onClick={handleDelete(user)}>
             Delete
           </Button>
         </Modal.Footer>
@@ -99,7 +98,7 @@ export const ProfileView = ( {token, movies, user, onDelete} ) => {
           </Row>
         )}
       </div>
-      <Link to={`/users:userid`}>
+      <Link to={`/users/${encodeURIComponent(user._id)}`}>
         <Button>Edit User Info</Button>
       </Link>
       <Link to={`/`}>
