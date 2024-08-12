@@ -1,11 +1,11 @@
 import PropTypes from "prop-types"
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Button, Row, Col, Modal } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import { MovieCard } from "../movie-card/movie-card"
 
-export const ProfileView = () => {
+export const ProfileView = ( {token, movies, user, onDelete} ) => {
 
   const [users, setUsers] = useState([]);
 
@@ -34,14 +34,17 @@ export const ProfileView = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const handleDelete = (userId) => {
-    fetch("https://myflix-api-3of3.onrender.com/users/" + userId, { method: "DELETE" })
-      .then(<Navigate to="/" />)
+
+  function handleDelete(userId) {
+    fetch("https://myflix-api-3of3.onrender.com/users/" + userId, { headers: { Authorization: `Bearer ${token}` }, method: "DELETE" })
+    .then(onDelete())
+      .then(<Navigate to="/" replace/>);
+      alert("User successfully deleted!")
   }
 
   const { userId } = useParams();
 
-  const user = users.find((u) => u._id === userId);
+  // const user = users.find((u) => u.userId === userId);
 
   let Favorites = movies.filter(m => user.Favorites.includes(m.key))
 
@@ -116,7 +119,7 @@ ProfileView.propTypes = {
     Name: PropTypes.string,
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
-    Birthday: PropTypes.instanceOf(Date),
+    Birthday: PropTypes.string,
     Favorites: PropTypes.array
   })
 }

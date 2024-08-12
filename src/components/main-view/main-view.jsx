@@ -116,7 +116,12 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    <ProfileView />
+                    <ProfileView token={token} movies={movies} user={user}
+                    onDelete={() =>
+                      (setUser(null),
+                        setToken(null),
+                        localStorage.clear())
+                      }/>
                   </Col>
                 )}
               </>
