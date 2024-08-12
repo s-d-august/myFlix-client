@@ -11,7 +11,6 @@ export const ProfileView = ( {token, movies, user} ) => {
 
   useEffect(() => {
     if (!token) return;
-
     fetch("https://myflix-api-3of3.onrender.com/users",
       { headers: { Authorization: `Bearer ${token}` } })
       .then((response) => response.json())
@@ -58,7 +57,7 @@ export const ProfileView = ( {token, movies, user} ) => {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleDelete(user)}>
+          <Button variant="danger" onClick={() => handleDelete(user)}>
             Delete
           </Button>
         </Modal.Footer>
