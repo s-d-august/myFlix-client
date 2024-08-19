@@ -5,8 +5,7 @@ import Form from 'react-bootstrap/Form';
 
 export const UserUpdate = (user, token) => {
 
-  console.log(token)
-
+  var token = user.token
   var user = user.user
 
   const [username, setUsername] = useState(user.Username);
