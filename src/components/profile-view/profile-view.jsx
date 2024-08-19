@@ -1,33 +1,10 @@
 import PropTypes from "prop-types"
-import { useParams } from "react-router";
 import { Link, Navigate } from "react-router-dom";
 import { Button, Row, Col, Modal } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import { MovieCard } from "../movie-card/movie-card"
 
-export const ProfileView = ( {token, movies, user} ) => {
-
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    if (!token) return;
-    fetch("https://myflix-api-3of3.onrender.com/users",
-      { headers: { Authorization: `Bearer ${token}` } })
-      .then((response) => response.json())
-      .then((data) => {
-        const usersFromApi = data.map((doc) => {
-          return {
-            userId: doc._id,
-            Username: doc.Username,
-            Name: doc.Name,
-            Birthday: doc.Birthday,
-            Email: doc.Email,
-            Favorites: doc.Favorites
-          }
-        })
-        setUsers(usersFromApi)
-      })
-  }, [token]);
+export const ProfileView = ( {token, movies, user, onDelete} ) => {
 
   const [show, setShow] = useState(false);
 
@@ -36,13 +13,9 @@ export const ProfileView = ( {token, movies, user} ) => {
 
   function handleDelete(user) {
     fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}`, { headers: { Authorization: `Bearer ${token}` }, method: "DELETE" })
-//    .then(onDelete())
+      .then(onDelete())
       .then(<Navigate to="/" replace/>);
   }
-
-  const { userId } = useParams();
-
-  // const user = users.find((u) => u.userId === userId);
 
   let Favorites = movies.filter(m => user.Favorites.includes(m.key))
 
@@ -100,9 +73,7 @@ export const ProfileView = ( {token, movies, user} ) => {
       <Link to={`/users/${encodeURIComponent(user._id)}`}>
         <Button>Edit User Info</Button>
       </Link>
-      <Link to={`/`}>
         <Button variant="danger" onClick={handleShow}>Delete User</Button>
-      </Link>
       <Link to={`/`}>
         <Button className="back-button">Back</Button>
       </Link>

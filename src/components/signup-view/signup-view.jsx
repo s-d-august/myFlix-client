@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Navigate } from 'react-router-dom'
+import { Navigate, redirect } from 'react-router-dom';
+
 
 export const SignupView = () => {
   const [username, setUsername] = useState("");
@@ -29,8 +30,8 @@ export const SignupView = () => {
       },
     }).then((response) => {
       if (response.ok) {
-        alert("Signup successful");
-        (<Navigate to="/login" replace />);
+      alert("Signup successful");
+        return redirect("/login");
       } else {
         alert("Signup failed");
       }
