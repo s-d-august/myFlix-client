@@ -3,12 +3,17 @@ import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-export const UserUpdate = (user) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [name, setName] = useState("");
+export const UserUpdate = (user, token) => {
+
+  console.log(token)
+
+  var user = user.user
+
+  const [username, setUsername] = useState(user.Username);
+  const [password, setPassword] = useState(user.Password);
+  const [name, setName] = useState(user.Name);
+  const [email, setEmail] = useState(user.Email);
+  const [birthday, setBirthday] = useState(user.Birthday);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,13 +25,16 @@ export const UserUpdate = (user) => {
       Birthday: birthday,
     };
 
-    fetch(`https://myflix-api-3of3.onrender.com/users/${user._id}`, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => {
+    fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}`, 
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+      }
+    ).then((response) => {
       if (response.ok) {
         alert("Information updated!");
         window.location.reload();

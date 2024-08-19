@@ -70,7 +70,7 @@ export const ProfileView = ( {token, movies, user, onDelete} ) => {
           </Row>
         )}
       </div>
-      <Link to={`/users/${encodeURIComponent(user._id)}`}>
+      <Link to={`/update/${encodeURIComponent(user._id)}`}>
         <Button>Edit User Info</Button>
       </Link>
         <Button variant="danger" onClick={handleShow}>Delete User</Button>

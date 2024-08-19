@@ -5,6 +5,7 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navbar/navbar";
+import { UserUpdate } from "../user-update/user-update";
 import Row from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -123,6 +124,20 @@ export const MainView = () => {
                         localStorage.clear(),
                         alert("User successfully deleted!"))
                       }/>
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/update/:userId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={8}>
+                    <UserUpdate token={token} user={user} />
                   </Col>
                 )}
               </>
