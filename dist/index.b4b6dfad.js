@@ -27557,12 +27557,20 @@ const MovieCard = ({ movie })=>{
         as: (0, _reactRouterDom.Link),
         to: `/movies/${encodeURIComponent(movie.key)}`,
         children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                className: "position-absolute top-0 start-100 translate-middle fs-1",
+                children: "\uD83E\uDD0D"
+            }, void 0, false, {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 9,
+                columnNumber: 9
+            }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                 variant: "top",
                 src: movie.Image
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 9,
+                lineNumber: 10,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -27574,20 +27582,20 @@ const MovieCard = ({ movie })=>{
                         children: movie.Title
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 11,
+                        lineNumber: 12,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: movie.Director
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 12,
+                        lineNumber: 13,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 10,
+                lineNumber: 11,
                 columnNumber: 7
             }, undefined)
         ]
@@ -43402,7 +43410,7 @@ const UserUpdate = (user, token)=>{
             Email: email,
             Birthday: birthday
         };
-        fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}`, {
+        fetch(`https://myflix-api-3of3.onrender.com/update/${encodeURIComponent(user._id)}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

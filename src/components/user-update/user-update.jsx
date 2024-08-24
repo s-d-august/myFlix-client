@@ -24,7 +24,7 @@ export const UserUpdate = (user, token) => {
       Birthday: birthday,
     };
 
-    fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}`, 
+    fetch(`https://myflix-api-3of3.onrender.com/update/${encodeURIComponent(user._id)}`, 
       {
         method: "PUT",
         headers: {
