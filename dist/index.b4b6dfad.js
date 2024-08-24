@@ -27552,25 +27552,58 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 const MovieCard = ({ movie })=>{
+    if (user.Favorites.includes(movie.key)) var favIcon = /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+        className: "position-absolute top-0 end-0 fs-1",
+        onClick: ()=>removeFav(user, movie),
+        children: "\u2764\uFE0F\u200D"
+    }, void 0, false, {
+        fileName: "src/components/movie-card/movie-card.jsx",
+        lineNumber: 9,
+        columnNumber: 17
+    }, undefined);
+    else var favIcon = /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+        className: "position-absolute top-0 end-0 fs-1",
+        onClick: ()=>addFav(user, movie),
+        children: "\uD83E\uDD0D"
+    }, void 0, false, {
+        fileName: "src/components/movie-card/movie-card.jsx",
+        lineNumber: 11,
+        columnNumber: 17
+    }, undefined);
+    function addFav(user1, movie) {
+        fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user1._id)}/movies/${encodeURIComponent(movie.key)}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            method: "POST"
+        }).then((response)=>{
+            if (response.ok) alert("Successfully added to Favorites.");
+            else alert("Failed to add to Favorites.");
+        });
+    }
+    function removeFav(user1, movie) {
+        fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user1._id)}/movies/${encodeURIComponent(movie.key)}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            method: "DELETE"
+        }).then((response)=>{
+            if (response.ok) alert("Successfully removed from Favorites.");
+            else alert("Failed to remove from Favorites.");
+        });
+    }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "h-100",
         as: (0, _reactRouterDom.Link),
         to: `/movies/${encodeURIComponent(movie.key)}`,
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                className: "position-absolute top-0 start-100 translate-middle fs-1",
-                children: "\uD83E\uDD0D"
-            }, void 0, false, {
-                fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 9,
-                columnNumber: 9
-            }, undefined),
+            favIcon,
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                 variant: "top",
                 src: movie.Image
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 10,
+                lineNumber: 41,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -27582,26 +27615,26 @@ const MovieCard = ({ movie })=>{
                         children: movie.Title
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 12,
+                        lineNumber: 43,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: movie.Director
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 13,
+                        lineNumber: 44,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 11,
+                lineNumber: 42,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 8,
+        lineNumber: 39,
         columnNumber: 7
     }, undefined);
 };
