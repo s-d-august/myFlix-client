@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 export const MovieCard = ({ movie, user, token }) => {
 
 if (user.Favorites.includes(movie.key)) {
-  var favIcon = <span className="position-absolute top-0 end-0 fs-1" onClick={() => removeFav(user, movie)}>❤️‍</span>
+  var favIcon = <span className="position-absolute top-0 end-0 fs-1 hand" onClick={() => removeFav(user, movie)}>❤️‍</span>
 } else {
-  var favIcon = <span className="position-absolute top-0 end-0 fs-1" onClick={() => addFav(user, movie)}>🤍</span>
+  var favIcon = <span className="position-absolute top-0 end-0 fs-1 hand" onClick={() => addFav(user, movie)}>🤍</span>
 }
 
 function addFav(user, movie) {
