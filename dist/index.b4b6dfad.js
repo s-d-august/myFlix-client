@@ -27488,7 +27488,9 @@ const MainView = ()=>{
                                             className: "mb-4",
                                             md: 3,
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                                movie: movie
+                                                movie: movie,
+                                                user: user,
+                                                token: token
                                             }, void 0, false, {
                                                 fileName: "src/components/main-view/main-view.jsx",
                                                 lineNumber: 158,
@@ -27551,7 +27553,7 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
-const MovieCard = ({ movie })=>{
+const MovieCard = ({ movie, user, token })=>{
     if (user.Favorites.includes(movie.key)) var favIcon = /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
         className: "position-absolute top-0 end-0 fs-1",
         onClick: ()=>removeFav(user, movie),
@@ -27570,32 +27572,34 @@ const MovieCard = ({ movie })=>{
         lineNumber: 11,
         columnNumber: 17
     }, undefined);
-    function addFav(user1, movie) {
-        fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user1._id)}/movies/${encodeURIComponent(movie.key)}`, {
+    function addFav(user, movie) {
+        fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}/movies/${encodeURIComponent(movie.key)}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             },
             method: "POST"
         }).then((response)=>{
-            if (response.ok) alert("Successfully added to Favorites.");
-            else alert("Failed to add to Favorites.");
+            if (response.ok) {
+                alert("Successfully added to Favorites.");
+                window.location.reload();
+            } else alert("Failed to add to Favorites.");
         });
     }
-    function removeFav(user1, movie) {
-        fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user1._id)}/movies/${encodeURIComponent(movie.key)}`, {
+    function removeFav(user, movie) {
+        fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}/movies/${encodeURIComponent(movie.key)}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             },
             method: "DELETE"
         }).then((response)=>{
-            if (response.ok) alert("Successfully removed from Favorites.");
-            else alert("Failed to remove from Favorites.");
+            if (response.ok) {
+                alert("Successfully removed from Favorites.");
+                window.location.reload();
+            } else alert("Failed to remove from Favorites.");
         });
     }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "h-100",
-        as: (0, _reactRouterDom.Link),
-        to: `/movies/${encodeURIComponent(movie.key)}`,
         children: [
             favIcon,
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
@@ -27603,38 +27607,40 @@ const MovieCard = ({ movie })=>{
                 src: movie.Image
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 41,
+                lineNumber: 43,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                 style: {
                     textDecoration: "none"
                 },
+                as: (0, _reactRouterDom.Link),
+                to: `/movies/${encodeURIComponent(movie.key)}`,
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
                         children: movie.Title
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 43,
+                        lineNumber: 45,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: movie.Director
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 44,
+                        lineNumber: 46,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 42,
+                lineNumber: 44,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 39,
+        lineNumber: 41,
         columnNumber: 7
     }, undefined);
 };
@@ -43320,7 +43326,9 @@ const ProfileView = ({ token, movies, user, onDelete })=>{
                                 className: "mb-4",
                                 md: 6,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                    movie: movie
+                                    movie: movie,
+                                    user: user,
+                                    token: token
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
                                     lineNumber: 67,

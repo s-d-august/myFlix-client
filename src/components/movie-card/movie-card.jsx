@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const MovieCard = ({ movie }) => {
+export const MovieCard = ({ movie, user, token }) => {
 
 if (user.Favorites.includes(movie.key)) {
   var favIcon = <span className="position-absolute top-0 end-0 fs-1" onClick={() => removeFav(user, movie)}>❤️‍</span>
@@ -17,6 +17,7 @@ function addFav(user, movie) {
   .then((response) => {
     if (response.ok) {
     alert("Successfully added to Favorites.");
+    window.location.reload();
     } else {
       alert("Failed to add to Favorites.");
     }
@@ -29,6 +30,7 @@ function removeFav(user, movie) {
   .then((response) => {
     if (response.ok) {
     alert("Successfully removed from Favorites.");
+    window.location.reload();
     } else {
       alert("Failed to remove from Favorites.");
     }
@@ -36,10 +38,10 @@ function removeFav(user, movie) {
 }
 
   return (
-      <Card className="h-100" as={Link} to={`/movies/${encodeURIComponent(movie.key)}`}>
+      <Card className="h-100">
         {favIcon}
       <Card.Img variant="top" src={movie.Image} />
-      <Card.Body style={{textDecoration: "none"}}>
+      <Card.Body style={{textDecoration: "none"}}  as={Link} to={`/movies/${encodeURIComponent(movie.key)}`}>
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Director}</Card.Text>
       </Card.Body>

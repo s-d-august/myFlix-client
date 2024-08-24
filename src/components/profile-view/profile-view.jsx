@@ -64,7 +64,7 @@ export const ProfileView = ( {token, movies, user, onDelete} ) => {
           <Row>
             {Favorites.map((movie) => (
               <Col className="mb-4" key={movie.key} md={6}>
-                <MovieCard movie={movie} />
+                <MovieCard movie={movie} user={user} token={token}/>
               </Col>
             ))}
           </Row>
