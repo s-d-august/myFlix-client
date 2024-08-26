@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Navigate, redirect } from 'react-router-dom';
 
-export const UserUpdate = (user, token, syncUser) => {
+export const UserUpdate = (user, token) => {
 
   var token = user.token
   var user = user.user
@@ -39,9 +40,9 @@ export const UserUpdate = (user, token, syncUser) => {
       } else {
         alert("Information update failed.");
       }
-    }).then((data) => {
-        syncUser(data);
+    }).then(() => {
         alert("Information successfully updated.");
+        return redirect(`/users/${encodeURIComponent(user._id)}`);
     })
   };
 

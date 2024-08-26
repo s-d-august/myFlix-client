@@ -175,7 +175,7 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    <UserUpdate token={token} user={user} syncUser={syncUser}/>
+                    <UserUpdate token={token} user={user}/>
                   </Col>
                 )}
               </>

@@ -27488,8 +27488,7 @@ const MainView = ()=>{
                                     md: 8,
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userUpdate.UserUpdate), {
                                         token: token,
-                                        user: user,
-                                        syncUser: syncUser
+                                        user: user
                                     }, void 0, false, {
                                         fileName: "src/components/main-view/main-view.jsx",
                                         lineNumber: 178,
@@ -43467,8 +43466,9 @@ var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _form = require("react-bootstrap/Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
+var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
-const UserUpdate = (user, token, syncUser)=>{
+const UserUpdate = (user, token)=>{
     _s();
     var token = user.token;
     var user = user.user;
@@ -43496,9 +43496,9 @@ const UserUpdate = (user, token, syncUser)=>{
         }).then((response)=>{
             if (response.ok) return response.json();
             else alert("Information update failed.");
-        }).then((data)=>{
-            syncUser(data);
+        }).then(()=>{
             alert("Information successfully updated.");
+            return (0, _reactRouterDom.redirect)(`/users/${encodeURIComponent(user._id)}`);
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -43508,7 +43508,7 @@ const UserUpdate = (user, token, syncUser)=>{
                 children: "Edit User Info"
             }, void 0, false, {
                 fileName: "src/components/user-update/user-update.jsx",
-                lineNumber: 50,
+                lineNumber: 51,
                 columnNumber: 5
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
@@ -43521,7 +43521,7 @@ const UserUpdate = (user, token, syncUser)=>{
                                 children: "Username:"
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 53,
+                                lineNumber: 54,
                                 columnNumber: 9
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -43531,13 +43531,13 @@ const UserUpdate = (user, token, syncUser)=>{
                                 minLength: "3"
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 54,
+                                lineNumber: 55,
                                 columnNumber: 9
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user-update/user-update.jsx",
-                        lineNumber: 52,
+                        lineNumber: 53,
                         columnNumber: 7
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -43547,7 +43547,7 @@ const UserUpdate = (user, token, syncUser)=>{
                                 children: "Password:"
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 63,
+                                lineNumber: 64,
                                 columnNumber: 9
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -43556,13 +43556,13 @@ const UserUpdate = (user, token, syncUser)=>{
                                 onChange: (e)=>setPassword(e.target.value)
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 64,
+                                lineNumber: 65,
                                 columnNumber: 9
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user-update/user-update.jsx",
-                        lineNumber: 62,
+                        lineNumber: 63,
                         columnNumber: 7
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -43572,7 +43572,7 @@ const UserUpdate = (user, token, syncUser)=>{
                                 children: "Name:"
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 72,
+                                lineNumber: 73,
                                 columnNumber: 9
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -43581,13 +43581,13 @@ const UserUpdate = (user, token, syncUser)=>{
                                 onChange: (e)=>setName(e.target.value)
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 73,
+                                lineNumber: 74,
                                 columnNumber: 9
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user-update/user-update.jsx",
-                        lineNumber: 71,
+                        lineNumber: 72,
                         columnNumber: 7
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -43597,7 +43597,7 @@ const UserUpdate = (user, token, syncUser)=>{
                                 children: "Email:"
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 81,
+                                lineNumber: 82,
                                 columnNumber: 9
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -43606,13 +43606,13 @@ const UserUpdate = (user, token, syncUser)=>{
                                 onChange: (e)=>setEmail(e.target.value)
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 82,
+                                lineNumber: 83,
                                 columnNumber: 9
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user-update/user-update.jsx",
-                        lineNumber: 80,
+                        lineNumber: 81,
                         columnNumber: 7
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -43622,7 +43622,7 @@ const UserUpdate = (user, token, syncUser)=>{
                                 children: "Birthday:"
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 90,
+                                lineNumber: 91,
                                 columnNumber: 9
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -43631,13 +43631,13 @@ const UserUpdate = (user, token, syncUser)=>{
                                 onChange: (e)=>setBirthday(e.target.value)
                             }, void 0, false, {
                                 fileName: "src/components/user-update/user-update.jsx",
-                                lineNumber: 91,
+                                lineNumber: 92,
                                 columnNumber: 9
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/user-update/user-update.jsx",
-                        lineNumber: 89,
+                        lineNumber: 90,
                         columnNumber: 7
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
@@ -43649,13 +43649,13 @@ const UserUpdate = (user, token, syncUser)=>{
                         children: "Submit"
                     }, void 0, false, {
                         fileName: "src/components/user-update/user-update.jsx",
-                        lineNumber: 98,
+                        lineNumber: 99,
                         columnNumber: 7
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/user-update/user-update.jsx",
-                lineNumber: 51,
+                lineNumber: 52,
                 columnNumber: 5
             }, undefined)
         ]
@@ -43671,6 +43671,6 @@ $RefreshReg$(_c, "UserUpdate");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","@parcel/transformer-js/src/esmodule-helpers.js":"9aFIR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"a60s4"}],"lJZlQ":[function() {},{}]},["i5gk3","9EcMg","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","@parcel/transformer-js/src/esmodule-helpers.js":"9aFIR","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"a60s4","react-router-dom":"9xmpe"}],"lJZlQ":[function() {},{}]},["i5gk3","9EcMg","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
