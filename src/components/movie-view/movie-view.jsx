@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button'
 
-export const MovieView = ({movies, user, token}) => {
+export const MovieView = ({movies, user, token, syncUser, addFav, removeFav}) => {
   
   const { movieId } = useParams();
 
@@ -15,31 +15,7 @@ export const MovieView = ({movies, user, token}) => {
     var favIcon = <span className="position-absolute top-0 end-0 fs-1 hand" onClick={() => addFav(user, movie)}>🤍</span>
   }
   
-  function addFav(user, movie) {
-    fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}/movies/${encodeURIComponent(movie.key)}`, 
-    { headers: { Authorization: `Bearer ${token}` }, method: "POST" })
-    .then((response) => {
-      if (response.ok) {
-      alert("Successfully added to Favorites.");
-      window.location.reload();
-      } else {
-        alert("Failed to add to Favorites.");
-      }
-    });
-  }
-  
-  function removeFav(user, movie) {
-    fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}/movies/${encodeURIComponent(movie.key)}`, 
-    { headers: { Authorization: `Bearer ${token}` }, method: "DELETE" })
-    .then((response) => {
-      if (response.ok) {
-      alert("Successfully removed from Favorites.");
-      window.location.reload();
-      } else {
-        alert("Failed to remove from Favorites.");
-      }
-    });
-  }
+
 
   return (
     <div className="movie-view position-relative">

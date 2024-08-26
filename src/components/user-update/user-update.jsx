@@ -3,7 +3,7 @@ import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-export const UserUpdate = (user, token) => {
+export const UserUpdate = (user, token, syncUser) => {
 
   var token = user.token
   var user = user.user
@@ -35,12 +35,14 @@ export const UserUpdate = (user, token) => {
       }
     ).then((response) => {
       if (response.ok) {
-        alert("Information updated!");
-        window.location.reload();
+        return response.json();
       } else {
         alert("Information update failed.");
       }
-    });
+    }).then((data) => {
+        syncUser(data);
+        alert("Information successfully updated.");
+    })
   };
 
   return (
