@@ -3,9 +3,16 @@ import { Link, Navigate } from "react-router-dom";
 import { Button, Row, Col, Modal } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import { MovieCard } from "../movie-card/movie-card"
+import { useSelector, useDispatch } from "react-redux";
+import { setUser, setToken } from "../../redux/reducers/user";
 
-export const ProfileView = ( {token, movies, user, onDelete} ) => {
+export const ProfileView = () => {
 
+  const movies = useSelector((state) => state.movies);
+  const user = useSelector((state) => state.user);
+  const token = useSelector((state) => state.token)
+  const dispatch = useDispatch();
+  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -13,7 +20,9 @@ export const ProfileView = ( {token, movies, user, onDelete} ) => {
 
   function handleDelete(user) {
     fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}`, { headers: { Authorization: `Bearer ${token}` }, method: "DELETE" })
-      .then(onDelete())
+      .then((dispatch(setUser(null)), setToken(null)),
+      localStorage.clear(),
+      alert("User successfully deleted!"))
       .then(<Navigate to="/" replace/>);
   }
 

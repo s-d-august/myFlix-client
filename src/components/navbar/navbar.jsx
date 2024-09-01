@@ -4,8 +4,15 @@ import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
 import {Link} from 'react-router-dom'
 import { ProfileView } from '../profile-view/profile-view'
+import { useSelector, useDispatch } from "react-redux";
+import { setUser, setToken } from "../../redux/reducers/user";
 
-export const NavigationBar = ({user, onLoggedOut}) => {
+export const NavigationBar = () => {
+
+const user = useSelector((state) => state.user);
+const token = useSelector((state) => state.token);
+const dispatch = useDispatch();
+
   return (
 <Navbar fixed="top" bg="dark">
       <Container>
@@ -31,7 +38,7 @@ export const NavigationBar = ({user, onLoggedOut}) => {
                 <Nav.Link as={Link} to={`/users/${encodeURIComponent(user._id)}`} className='text-light'>
                   Profile
                 </Nav.Link>
-                <Nav.Link onClick={onLoggedOut} className='text-light'>
+                <Nav.Link onClick={() => dispatch(setUser(null), setToken(null))} className='text-light'>
                   Logout
                 </Nav.Link>
               </>

@@ -8,29 +8,32 @@ import { NavigationBar } from "../navbar/navbar";
 import { UserUpdate } from "../user-update/user-update";
 import Row from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { symbol } from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
+import { setMovies } from "../../redux/reducers/movies";
+import { setUser, setToken } from "../../redux/reducers/user";
 
 
 export const MainView = () => {
 
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
-  const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const token = useSelector((state) => state.token)
+  const movies = useSelector((state) => state.movies);
+  const user = useSelector((state) => state.user)
+  const dispatch = useDispatch();
 
   const syncUser = (user) => {
     localStorage.setItem('user', JSON.stringify(user));
-    setUser(user);
+    dispatch(setUser(user), setToken(token));
   }
 
-  function addFav(user, movie) {
+  function addFav(user, movie, token) {
     fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}/movies/${encodeURIComponent(movie.key)}`, 
-    { headers: { Authorization: `Bearer ${token}` }, method: "POST" })
+    { headers: { 
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json' // Ensure the Content-Type header is set
+    }, method: "POST" })
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -43,7 +46,7 @@ export const MainView = () => {
     })
   }
   
-  function removeFav(user, movie) {
+  function removeFav(user, movie, token) {
     fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}/movies/${encodeURIComponent(movie.key)}`, 
     { headers: { Authorization: `Bearer ${token}` }, method: "DELETE" })
     .then((response) => {
@@ -77,21 +80,13 @@ export const MainView = () => {
             Image: doc.ImagePath
           }
         })
-        setMovies(moviesFromApi)
+        dispatch(setMovies(moviesFromApi))
       })
   }, [token]);
 
   return (
     <BrowserRouter>
-      <NavigationBar user={user}
-        onLoggedOut={() =>
-        (setUser(null),
-          setToken(null),
-          localStorage.clear())
-        }
-      >
-
-      </NavigationBar>
+      <NavigationBar />
 
       <Row className="justify-content-md-center">
         <Routes>
@@ -118,12 +113,7 @@ export const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col md={5}>
-                    <LoginView
-                      onLoggedIn={(user, token) => {
-                        setUser(user);
-                        setToken(token);
-                      }}
-                    />
+                    <LoginView />
                   </Col>
                 )}
               </>
@@ -140,7 +130,7 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView movies={movies} user={user} token={token} syncUser={syncUser}
+                    <MovieView syncUser={syncUser}
                       addFav={addFav} removeFav={removeFav}/>
                   </Col>
                 )}
@@ -155,13 +145,7 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    <ProfileView token={token} movies={movies} user={user}
-                    onDelete={() =>
-                      (setUser(null),
-                        setToken(null),
-                        localStorage.clear(),
-                        alert("User successfully deleted!"))
-                      }/>
+                    <ProfileView />
                   </Col>
                 )}
               </>
@@ -175,7 +159,7 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    <UserUpdate token={token} user={user}/>
+                    <UserUpdate syncUser={syncUser}/>
                   </Col>
                 )}
               </>

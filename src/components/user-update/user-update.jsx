@@ -3,11 +3,14 @@ import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Navigate, redirect } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { setUser, setToken } from "../../redux/reducers/user";
 
-export const UserUpdate = (user, token) => {
+export const UserUpdate = (syncUser) => {
 
-  var token = user.token
-  var user = user.user
+  const user = useSelector((state) => state.user);
+  const token = useSelector((state) => state.token)
+  const dispatch = useDispatch();
 
   const [username, setUsername] = useState(user.Username);
   const [password, setPassword] = useState(user.Password);
@@ -17,7 +20,7 @@ export const UserUpdate = (user, token) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = {
+    var data = {
       Name: name,
       Username: username,
       Password: password,
@@ -41,6 +44,7 @@ export const UserUpdate = (user, token) => {
         alert("Information update failed.");
       }
     }).then(() => {
+      syncUser(data);
         alert("Information successfully updated.");
         return redirect(`/users/${encodeURIComponent(user._id)}`);
     })
