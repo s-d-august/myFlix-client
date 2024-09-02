@@ -4,7 +4,9 @@ import { Button, Row, Col, Modal } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import { MovieCard } from "../movie-card/movie-card"
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, setToken } from "../../redux/reducers/user";
+import { setUser } from "../../redux/reducers/user";
+import { setToken } from "../../redux/reducers/token";
+
 
 export const ProfileView = () => {
 
@@ -74,7 +76,7 @@ export const ProfileView = () => {
           <Row>
             {Favorites.map((movie) => (
               <Col className="mb-4" key={movie.key} md={6}>
-                <MovieCard movie={movie} user={user} token={token}/>
+                <MovieCard movie={movie} syncUser={syncUser} addFav={addFav} removeFav={removeFav}/>
               </Col>
             ))}
           </Row>

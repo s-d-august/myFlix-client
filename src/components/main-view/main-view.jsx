@@ -11,7 +11,8 @@ import Col from 'react-bootstrap/Col';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
-import { setUser, setToken } from "../../redux/reducers/user";
+import { setUser } from "../../redux/reducers/user";
+import { setToken } from "../../redux/reducers/token";
 
 
 export const MainView = () => {

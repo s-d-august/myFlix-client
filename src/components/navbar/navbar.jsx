@@ -5,7 +5,9 @@ import Button from 'react-bootstrap/Button'
 import {Link} from 'react-router-dom'
 import { ProfileView } from '../profile-view/profile-view'
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, setToken } from "../../redux/reducers/user";
+import { setUser } from "../../redux/reducers/user";
+import { setToken } from "../../redux/reducers/token";
+
 
 export const NavigationBar = () => {
 

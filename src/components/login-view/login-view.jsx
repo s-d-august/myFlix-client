@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, setToken } from "../../redux/reducers/user";
+import { setUser } from "../../redux/reducers/user";
+import { setToken } from "../../redux/reducers/token";
+
 
 export const LoginView = () => {
   const [username, setUsername] = useState("");
@@ -12,9 +14,6 @@ export const LoginView = () => {
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token)
   const dispatch = useDispatch();
-
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
   
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));

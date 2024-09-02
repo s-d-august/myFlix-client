@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { setMovies } from "../../redux/reducers/movies";
-import { setUser, setToken } from "../../redux/reducers/user";
+import { setUser } from "../../redux/reducers/user";
+import { setToken } from "../../redux/reducers/token";
 import { useSelector, useDispatch } from "react-redux";
 
 export const MovieCard = ({ movie, syncUser, addFav, removeFav}) => {
