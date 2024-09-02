@@ -8,7 +8,7 @@ import { setUser } from "../../redux/reducers/user";
 import { setToken } from "../../redux/reducers/token";
 
 
-export const UserUpdate = (syncUser) => {
+export const UserUpdate = ({syncUser}) => {
 
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token)

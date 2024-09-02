@@ -48716,7 +48716,7 @@ var _reactRedux = require("react-redux");
 var _user = require("../../redux/reducers/user");
 var _token = require("../../redux/reducers/token");
 var _s = $RefreshSig$();
-const UserUpdate = (syncUser)=>{
+const UserUpdate = ({ syncUser })=>{
     _s();
     const user = (0, _reactRedux.useSelector)((state)=>state.user);
     const token = (0, _reactRedux.useSelector)((state)=>state.token);
