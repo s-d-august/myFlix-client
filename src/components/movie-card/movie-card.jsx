@@ -6,7 +6,7 @@ import { setMovies } from "../../redux/reducers/movies";
 import { setUser, setToken } from "../../redux/reducers/user";
 import { useSelector, useDispatch } from "react-redux";
 
-export const MovieCard = ({ syncUser, addFav, removeFav}) => {
+export const MovieCard = ({ movie, syncUser, addFav, removeFav}) => {
 
   const movies = useSelector((state) => state.movies);
   const user = useSelector((state) => state.user);

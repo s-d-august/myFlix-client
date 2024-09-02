@@ -8,6 +8,9 @@ import { setUser, setToken } from "../../redux/reducers/user";
 export const LoginView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const user = useSelector((state) => state.user);
+  const token = useSelector((state) => state.token)
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
