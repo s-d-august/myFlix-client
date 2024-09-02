@@ -27,9 +27,10 @@ export const ProfileView = () => {
   }
 
   let Favorites = movies.filter(m => user.Favorites.includes(m.key))
-
+  console.log(user)
   return (
     <div className="user-view">
+
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

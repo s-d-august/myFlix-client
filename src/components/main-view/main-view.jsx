@@ -23,6 +23,7 @@ export const MainView = () => {
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch();
 
+
   const syncUser = (user) => {
     localStorage.setItem('user', JSON.stringify(user));
     dispatch(setUser(user), setToken(token));

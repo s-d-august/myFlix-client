@@ -13,6 +13,21 @@ export const LoginView = () => {
   const token = useSelector((state) => state.token)
   const dispatch = useDispatch();
 
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
+  
+  if (storedUser === user) {
+    return
+  } else if (storedUser) {
+    dispatch(setUser(storedUser))
+  }
+
+  if (storedToken === token) {
+    return
+  } else if (storedToken) {
+    dispatch(setToken(storedToken))
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
