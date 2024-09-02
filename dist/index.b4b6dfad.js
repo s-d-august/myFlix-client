@@ -48930,13 +48930,16 @@ var _movies = require("./reducers/movies");
 var _moviesDefault = parcelHelpers.interopDefault(_movies);
 var _user = require("./reducers/user");
 var _userDefault = parcelHelpers.interopDefault(_user);
+var _token = require("./reducers/token");
+var _tokenDefault = parcelHelpers.interopDefault(_token);
 const store = (0, _toolkit.configureStore)({
     reducer: {
         movies: (0, _moviesDefault.default),
-        user: (0, _userDefault.default)
+        user: (0, _userDefault.default),
+        token: (0, _tokenDefault.default)
     }
 });
 
-},{"@reduxjs/toolkit":"1pk7d","@parcel/transformer-js/src/esmodule-helpers.js":"9aFIR","./reducers/movies":"l0qwl","./reducers/user":"e6tdF"}]},["i5gk3","9EcMg","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"@reduxjs/toolkit":"1pk7d","@parcel/transformer-js/src/esmodule-helpers.js":"9aFIR","./reducers/movies":"l0qwl","./reducers/user":"e6tdF","./reducers/token":"4eTad"}]},["i5gk3","9EcMg","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
