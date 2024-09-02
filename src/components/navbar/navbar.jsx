@@ -9,7 +9,7 @@ import { setUser } from "../../redux/reducers/user";
 import { setToken } from "../../redux/reducers/token";
 
 
-export const NavigationBar = () => {
+export const NavigationBar = ({syncUser}) => {
 
 const user = useSelector((state) => state.user);
 const token = useSelector((state) => state.token);
@@ -40,7 +40,11 @@ const dispatch = useDispatch();
                 <Nav.Link as={Link} to={`/users/${encodeURIComponent(user._id)}`} className='text-light'>
                   Profile
                 </Nav.Link>
-                <Nav.Link onClick={() => dispatch(setUser(null), setToken(null))} className='text-light'>
+                <Nav.Link onClick={() => {
+                  dispatch(setUser(null));
+                  dispatch(setToken(null));
+                  syncUser(null);
+                }} className='text-light'>
                   Logout
                 </Nav.Link>
               </>

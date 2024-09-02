@@ -67,8 +67,9 @@ export const MainView = () => {
   useEffect(() => {
     if (!token) return;
 
-    fetch("https://myflix-api-3of3.onrender.com/movies",
-      { headers: { Authorization: `Bearer ${token}` } })
+    fetch("https://myflix-api-3of3.onrender.com/movies",{
+
+       headers: { Authorization: `Bearer ${token}`  }})
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((doc) => {
@@ -88,7 +89,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar />
+      <NavigationBar syncUser={syncUser}/>
 
       <Row className="justify-content-md-center">
         <Routes>
