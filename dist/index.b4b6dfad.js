@@ -47816,10 +47816,16 @@ const LoginView = ()=>{
     const dispatch = (0, _reactRedux.useDispatch)();
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
-    if (storedUser === user) return;
-    else if (storedUser) dispatch((0, _user.setUser)(storedUser));
-    if (storedToken === token) return;
-    else if (storedToken) dispatch((0, _user.setToken)(storedToken));
+    (0, _react.useEffect)(()=>{
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        const storedToken = localStorage.getItem("token");
+        if (storedUser && storedUser !== user) dispatch((0, _user.setUser)(storedUser));
+        if (storedToken && storedToken !== token) dispatch((0, _user.setToken)(storedToken));
+    }, [
+        dispatch,
+        user,
+        token
+    ]);
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
@@ -47851,7 +47857,7 @@ const LoginView = ()=>{
                 children: "Log In"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 66,
+                lineNumber: 67,
                 columnNumber: 5
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
@@ -47864,7 +47870,7 @@ const LoginView = ()=>{
                                 children: "Username:"
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 70,
+                                lineNumber: 71,
                                 columnNumber: 9
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -47875,13 +47881,13 @@ const LoginView = ()=>{
                                 minLength: "3"
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 71,
+                                lineNumber: 72,
                                 columnNumber: 9
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 69,
+                        lineNumber: 70,
                         columnNumber: 7
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -47891,7 +47897,7 @@ const LoginView = ()=>{
                                 children: "Password:"
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 81,
+                                lineNumber: 82,
                                 columnNumber: 9
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -47901,13 +47907,13 @@ const LoginView = ()=>{
                                 required: true
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 82,
+                                lineNumber: 83,
                                 columnNumber: 9
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 80,
+                        lineNumber: 81,
                         columnNumber: 7
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
@@ -47919,19 +47925,19 @@ const LoginView = ()=>{
                         children: "Submit"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 89,
+                        lineNumber: 90,
                         columnNumber: 7
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 68,
+                lineNumber: 69,
                 columnNumber: 5
             }, undefined)
         ]
     }, void 0, true);
 };
-_s(LoginView, "rfttyHrzGy0vpp6MNOkOhJmVZ5c=", false, function() {
+_s(LoginView, "yw3w1h42LQiq33pBu/H0oy8TYHM=", false, function() {
     return [
         (0, _reactRedux.useSelector),
         (0, _reactRedux.useSelector),

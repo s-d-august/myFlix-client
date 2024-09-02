@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useSelector, useDispatch } from "react-redux";
@@ -16,17 +16,18 @@ export const LoginView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   
-  if (storedUser === user) {
-    return
-  } else if (storedUser) {
-    dispatch(setUser(storedUser))
-  }
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
 
-  if (storedToken === token) {
-    return
-  } else if (storedToken) {
-    dispatch(setToken(storedToken))
-  }
+    if (storedUser && storedUser !== user) {
+      dispatch(setUser(storedUser));
+    }
+
+    if (storedToken && storedToken !== token) {
+      dispatch(setToken(storedToken));
+    }
+  }, [dispatch, user, token]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
