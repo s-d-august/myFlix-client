@@ -28,6 +28,8 @@ export const UserUpdate = ({syncUser}) => {
       Password: password,
       Email: email,
       Birthday: birthday,
+      Favorites: user.Favorites,
+      _id: user._id
     };
 
     fetch(`https://myflix-api-3of3.onrender.com/update/${encodeURIComponent(user._id)}`, 

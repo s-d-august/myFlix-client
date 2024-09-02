@@ -8,7 +8,7 @@ import { setUser } from "../../redux/reducers/user";
 import { setToken } from "../../redux/reducers/token";
 
 
-export const ProfileView = () => {
+export const ProfileView = ({syncUser, addFav, removeFav}) => {
 
   const movies = useSelector((state) => state.movies);
   const user = useSelector((state) => state.user);

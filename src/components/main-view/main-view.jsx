@@ -148,7 +148,7 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    <ProfileView />
+                    <ProfileView syncUser={syncUser} addFav={addFav} removeFav={removeFav}/>
                   </Col>
                 )}
               </>
