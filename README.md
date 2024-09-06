@@ -27,4 +27,4 @@ Open the Web Browser at http://localhost:1234
 
 ### Hosting
 
-This project is hosted on Netlify at https://myflix1000.netlify.app 
+This project is hosted on Netlify at https://myflix-sda.netlify.app 
