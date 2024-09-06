@@ -10,7 +10,7 @@ import { setToken } from "../../redux/reducers/token";
 
 export const ProfileView = ({syncUser, addFav, removeFav}) => {
 
-  const movies = useSelector((state) => state.movies);
+  const movies = useSelector((state) => state.movies.list);
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token)
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export const ProfileView = ({syncUser, addFav, removeFav}) => {
   }
 
   let Favorites = movies.filter(m => user.Favorites.includes(m.key))
-  console.log(user)
+
   return (
     <div className="user-view">
 

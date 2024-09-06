@@ -48377,7 +48377,7 @@ var _token = require("../../redux/reducers/token");
 var _s = $RefreshSig$();
 const ProfileView = ({ syncUser, addFav, removeFav })=>{
     _s();
-    const movies = (0, _reactRedux.useSelector)((state)=>state.movies);
+    const movies = (0, _reactRedux.useSelector)((state)=>state.movies.list);
     const user = (0, _reactRedux.useSelector)((state)=>state.user);
     const token = (0, _reactRedux.useSelector)((state)=>state.token);
     const dispatch = (0, _reactRedux.useDispatch)();
@@ -48400,7 +48400,6 @@ const ProfileView = ({ syncUser, addFav, removeFav })=>{
         }, this));
     }
     let Favorites = movies.filter((m)=>user.Favorites.includes(m.key));
-    console.log(user);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "user-view",
         children: [
