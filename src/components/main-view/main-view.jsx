@@ -6,6 +6,7 @@ import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navbar/navbar";
 import { UserUpdate } from "../user-update/user-update";
+import { MoviesList } from "../movies-list/movies-list";
 import Row from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -20,7 +21,7 @@ export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const token = useSelector((state) => state.token)
-  const movies = useSelector((state) => state.movies);
+  const movies = useSelector((state) => state.movies.list);
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch();
 
@@ -31,45 +32,48 @@ export const MainView = () => {
   }
 
   function addFav(user, movie, token) {
-    fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}/movies/${encodeURIComponent(movie.key)}`, 
-    { headers: { 
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json' // Ensure the Content-Type header is set
-    }, method: "POST" })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        alert("Failed to add to Favorites.");
-      }
-    }).then((data) => {
+    fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}/movies/${encodeURIComponent(movie.key)}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json' // Ensure the Content-Type header is set
+        }, method: "POST"
+      })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert("Failed to add to Favorites.");
+        }
+      }).then((data) => {
         syncUser(data);
         alert("Successfully added to Favorites.");
-    })
+      })
   }
-  
+
   function removeFav(user, movie, token) {
-    fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}/movies/${encodeURIComponent(movie.key)}`, 
-    { headers: { Authorization: `Bearer ${token}` }, method: "DELETE" })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        alert("Failed to remove from Favorites.");
-      }
-    }).then((data) => {
-      syncUser(data);
-      alert("Successfully removed from Favorites.");
-    });
-    
+    fetch(`https://myflix-api-3of3.onrender.com/users/${encodeURIComponent(user._id)}/movies/${encodeURIComponent(movie.key)}`,
+      { headers: { Authorization: `Bearer ${token}` }, method: "DELETE" })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert("Failed to remove from Favorites.");
+        }
+      }).then((data) => {
+        syncUser(data);
+        alert("Successfully removed from Favorites.");
+      });
+
   };
 
   useEffect(() => {
     if (!token) return;
 
-    fetch("https://myflix-api-3of3.onrender.com/movies",{
+    fetch("https://myflix-api-3of3.onrender.com/movies", {
 
-       headers: { Authorization: `Bearer ${token}`  }})
+      headers: { Authorization: `Bearer ${token}` }
+    })
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((doc) => {
@@ -89,7 +93,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar syncUser={syncUser}/>
+      <NavigationBar syncUser={syncUser} />
 
       <Row className="justify-content-md-center">
         <Routes>
@@ -134,7 +138,7 @@ export const MainView = () => {
                 ) : (
                   <Col md={8}>
                     <MovieView syncUser={syncUser}
-                      addFav={addFav} removeFav={removeFav}/>
+                      addFav={addFav} removeFav={removeFav} />
                   </Col>
                 )}
               </>
@@ -148,7 +152,7 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    <ProfileView syncUser={syncUser} addFav={addFav} removeFav={removeFav}/>
+                    <ProfileView syncUser={syncUser} addFav={addFav} removeFav={removeFav} />
                   </Col>
                 )}
               </>
@@ -162,7 +166,7 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    <UserUpdate syncUser={syncUser}/>
+                    <UserUpdate syncUser={syncUser} />
                   </Col>
                 )}
               </>
@@ -171,22 +175,9 @@ export const MainView = () => {
           <Route
             path="/"
             element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col className="mb-4" key={movie.key} md={3}>
-                        <MovieCard movie={movie} user={user} token={token} syncUser={syncUser}
-                      addFav={addFav} removeFav={removeFav}/>
-                      </Col>
-                    ))}
-                  </>
-                )}
-              </>
+              <>{!user ? <Navigate to="/login" replace /> :
+                <MoviesList syncUser={syncUser}
+                  addFav={addFav} removeFav={removeFav} />}</>
             }
           />
         </Routes>
@@ -194,5 +185,6 @@ export const MainView = () => {
     </BrowserRouter>
   )
 }
+
 
 

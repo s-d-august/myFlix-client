@@ -8,7 +8,7 @@ import { setUser, setToken } from "../../redux/reducers/user";
 
 export const MovieView = ({syncUser, addFav, removeFav}) => {
   
-  const movies = useSelector((state) => state.movies);
+  const movies = useSelector((state) => state.movies.list);
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token)
   const dispatch = useDispatch();
